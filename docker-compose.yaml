@@ -1,12 +1,18 @@
 version: "3"
 
 services:
-  web:
+  web: # Будет сразу обновлять файл (тк имеется volumes)
     image: nginx
     ports:
       - "8080:80" # port_localhost: port_container
     volumes:
       - ./web:/usr/share/nginx/html
+
+  web-docker: # Потребуется заново билдить после изменений в файле
+    build: ./web
+    ports:
+      - "3002:80"
+
   back:
     build: .
     ports:
