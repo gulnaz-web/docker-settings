@@ -5,8 +5,7 @@ services:
     image: nginx
     ports:
       - "8080:80" # port_localhost: port_container
-  db:
-    image: postgres
-    environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
+  back:
+    build: .
+    ports:
+      - "3131:3000"
