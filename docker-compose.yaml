@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80" # port_localhost: port_container
+  db:
+    image: postgress
+    environment:
+      POSTGRESS_USER: test
+      POSTGRESS_PASSWORD: test
