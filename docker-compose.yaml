@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80" # port_localhost: port_container
   db:
-    image: postgress
+    image: postgres
     environment:
-      POSTGRESS_USER: test
-      POSTGRESS_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
