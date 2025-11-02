@@ -5,6 +5,8 @@ services:
     image: nginx
     ports:
       - "8080:80" # port_localhost: port_container
+    volumes:
+      - ./web:/usr/share/nginx/html
   back:
     build: .
     ports:
