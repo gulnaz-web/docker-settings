@@ -8,6 +8,8 @@ services:
         PORT: "3000"
     ports:
       - "3005:3000" # port_localhost: port_container
+    depends_on:
+      - backend
 
   backend:
     build:
