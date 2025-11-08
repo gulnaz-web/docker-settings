@@ -1,13 +1,9 @@
-FROM node:20
-
+FROM node:20-alpine
+ARG PORT
+ENV PORT=$PORT
 WORKDIR /app
-
 COPY package.json ./
-
 RUN npm install
-
-COPY index.js ./
-
-EXPOSE 3000
-
-CMD ["node", "index.js"]
+COPY app.js ./
+EXPOSE ${PORT}
+CMD ["node", "app.js"]

@@ -1,12 +1,23 @@
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
 FROM nginx:alpine
 
-COPY index.html /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY config/nginx.template.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+ARG PORT
+ENV PORT=$PORT  
+EXPOSE ${PORT}
 
-CMD ["nginx", "-g", "daemon off;"]
-
-
-
-
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
