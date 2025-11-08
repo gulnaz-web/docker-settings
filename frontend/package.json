@@ -1,5 +1,5 @@
 {
-  "name": "web-app",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,5 +19,3 @@
     "vite": "^5.4.2"
   }
 }
-
-

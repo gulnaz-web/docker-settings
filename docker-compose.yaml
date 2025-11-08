@@ -1,19 +1,20 @@
 version: "3"
 
 services:
-  # web: # Будет сразу обновлять файл (тк имеется volumes)
-  #   image: nginx
-  #   ports:
-  #     - "8080:80" # port_localhost: port_container
-  #   volumes:
-  #     - ./web:/usr/share/nginx/html
-
-  # web-docker: # Потребуется заново билдить после изменений в файле
-  #   build: ./web
-  #   ports:
-  #     - "3002:80"
-
-  back:
-    build: .
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        PORT: "3000"
     ports:
-      - "3131:3000"
+      - "3005:3000" # port_localhost: port_container
+
+  backend:
+    build:
+      context: ./backend
+      args:
+        PORT: "5555"
+    ports:
+      - "3006:5555"
+    environment:
+      PORT: 5555
